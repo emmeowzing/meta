@@ -562,14 +562,12 @@ overwrite(rTuple *data, int **m)
     {
         row_pointers[i] = malloc(sizeof(png_byte) * data->width);
         row = row_pointers[i];
+		
         for (j = 0; j < data->width; ++j)
-        {
             row[j * sizeof(png_byte)] = m[i][j];
-        }
     }
 
-//    destroy2DPNGbyteArray(data->width, data->datap);
-    free(data->datap);
+    destroy2DPNGbyteArray(data->height, data->datap);
     data->datap = row_pointers;
 }
 
@@ -616,7 +614,7 @@ main(int argc, char *argv[])
     destroy2DPNGbyteArray(data.height, data.datap);
     free(variance_covariance.avV);
     destroy2DArray(CHANNELS, inverse);
-    destroy2DintArray(1, m);
+    destroy2DintArray(data.height, m);
 
     end = clock();
     printf("** Time: %lf\n", (double)(end - start) / CLOCKS_PER_SEC);
