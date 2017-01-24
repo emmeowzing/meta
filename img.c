@@ -574,8 +574,8 @@ overwrite(rTuple *data, int **m)
 int 
 main(int argc, char *argv[])
 {
-    if (argc < 2 || 4 < argc) {
-        fprintf(stderr, "** Provide filename\n");
+    if (argc != 3) {
+        fprintf(stderr, "** Provide filename and writename\n");
         abort();
     }
 
@@ -619,5 +619,5 @@ main(int argc, char *argv[])
     end = clock();
     printf("** Time: %lf\n", (double)(end - start) / CLOCKS_PER_SEC);
 
-    return 1;
+    return 0;
 }
